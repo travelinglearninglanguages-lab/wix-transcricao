@@ -10,6 +10,16 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API está ativa');
 });
+const admin = require('firebase-admin');
+const serviceAccount = require('./firebase-key.json'); // baixe do console
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: 'SEU_BUCKET.appspot.com'
+});
+
+const bucket = admin.storage().bucket();
+
 
 // Rota principal para transcrição
 app.post('/transcrever', async (req, res) => {
