@@ -20,7 +20,7 @@ app.post('/transcrever', async (req, res) => {
     const response = await axios.post('https://api.assemblyai.com/v2/transcript', {
       audio_url: audioUrl
     }, {
-      headers: { authorization: 'SUA_API_KEY' }
+      headers: { authorization: 'b1e539dd77974df785a2569c8d4c414a' }
     });
 
     res.send({ transcriptId: response.data.id });
