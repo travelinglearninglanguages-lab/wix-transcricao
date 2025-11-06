@@ -1,10 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const { exec } = require('child_process');
 const axios = require('axios');
 const fs = require('fs');
 const admin = require('firebase-admin');
-require('dotenv').config();
 const serviceAccount = {
   projectId: process.env.FIREBASE_PROJECT_ID,
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
