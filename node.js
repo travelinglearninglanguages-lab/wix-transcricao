@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send('API está ativa');
 });
   admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount){
+  credential: admin.credential.cert(serviceAccount),
     projectId: "meuprojeto-385fe",
     clientEmail: "firebase-adminsdk-fbsvc@meuprojeto-385fe.iam.gserviceaccount.com",
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
