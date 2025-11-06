@@ -32,10 +32,6 @@ const bucket = admin.storage().bucket();
 
 // Rota principal para transcrição
 app.post('/transcrever', async (req, res) => {
-  const videoId = req.body.videoId;
-  if (!videoId) return res.status(400).send("ID do vídeo não fornecido");
-
-app.post('/transcrever', async (req, res) => {
   const { videoId } = req.body;
   if (!videoId) return res.status(400).send("ID do vídeo não fornecido");
 
