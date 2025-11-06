@@ -1,4 +1,7 @@
-{
+{ git add package.json
+git commit -m "Corrigido erro de JSON"
+git push
+
   "name": "transcricao-api",
   "version": "1.0.0",
   "description": "API para transcrição de vídeos do YouTube usando AssemblyAI",
