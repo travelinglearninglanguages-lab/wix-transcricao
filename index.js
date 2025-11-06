@@ -4,14 +4,18 @@ const { exec } = require('child_process');
 const axios = require('axios');
 const fs = require('fs');
 const admin = require('firebase-admin');
-const serviceAccount = require('./firebase-key.json');
+const serviceAccount = {
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  privateKey: process.env.FIREBASE_PRIVATE_KEY
+};
 
    admin.initializeApp({ 
      credential: admin.credential.cert(serviceAccount),
     projectId: "meuprojeto-385fe",
     clientEmail: "firebase-adminsdk-fbsvc@meuprojeto-385fe.iam.gserviceaccount.com",
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    storageBucket: "meuprojeto-385fe.appspot.com"
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET
 });
 
 const app = express();
