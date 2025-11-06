@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transcrever Vídeo</title>
+</head>
+<body>
+  <h2>Enviar vídeo para transcrição</h2>
+  <form id="formTranscrever">
+    <input type="text" id="videoId" placeholder="dQw4w9WgXcQ" />
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="resposta"></p>
+
+  <script>
+    document.getElementById('formTranscrever').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const videoId = document.getElementById('videoId').value;
+
+      const resposta = await fetch('https://wix-transcricao.onrender.com/transcrever', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ videoId })
+      });
+
+      const dados = await resposta.json();
+      document.getElementById('resposta').textContent = JSON.stringify(dados);
+    });
+  </script>
+</body>
+</html>
