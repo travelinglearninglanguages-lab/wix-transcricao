@@ -5,25 +5,21 @@ const axios = require('axios');
 const fs = require('fs');
 const admin = require('firebase-admin');
 const serviceAccount = require('./firebase-key.json');
-});
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-
-// Rota de verificação para Render
-app.get('/', (req, res) => {
-  res.send('API está ativa');
-});
-  admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+   admin.initializeApp({ 
+     credential: admin.credential.cert(serviceAccount),
     projectId: "meuprojeto-385fe",
     clientEmail: "firebase-adminsdk-fbsvc@meuprojeto-385fe.iam.gserviceaccount.com",
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
     storageBucket: "meuprojeto-385fe.appspot.com"
 });
 
+const app = express();
+app.use(cors());
+app.use(express.json());
+// Rota de verificação para Render
+app.get('/', (req, res) => {
+  res.send('API está ativa');
 });
 
 const bucket = admin.storage().bucket();
