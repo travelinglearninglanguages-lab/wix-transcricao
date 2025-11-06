@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const axios = require('axios');
 const fs = require('fs');
 const admin = require('firebase-admin');
+require('dotenv').config();
 const serviceAccount = {
   projectId: process.env.FIREBASE_PROJECT_ID,
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -14,7 +15,7 @@ const serviceAccount = {
      credential: admin.credential.cert(serviceAccount),
     projectId: "meuprojeto-385fe",
     clientEmail: "firebase-adminsdk-fbsvc@meuprojeto-385fe.iam.gserviceaccount.com",
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    privateKey: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET
 });
 
