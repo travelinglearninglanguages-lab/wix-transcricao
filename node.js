@@ -3,9 +3,9 @@ const cors = require('cors');
 const { exec } = require('child_process');
 const axios = require('axios');
 const fs = require('fs');
-
 const admin = require('firebase-admin');
-const serviceAccount = require('./firebase-key.json'); // baixe do console
+const serviceAccount = require('./firebase-key.json');
+});
 
 const app = express();
 app.use(cors());
@@ -21,8 +21,7 @@ app.get('/', (req, res) => {
     projectId: "meuprojeto-385fe",
     clientEmail: "firebase-adminsdk-fbsvc@meuprojeto-385fe.iam.gserviceaccount.com",
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  }),
-  storageBucket: "meuprojeto-385fe.appspot.com"
+    storageBucket: "meuprojeto-385fe.appspot.com"
 });
 
 });
