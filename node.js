@@ -1,21 +1,30 @@
 const express = require('express');
+const cors = require('cors');
 const { exec } = require('child_process');
 const axios = require('axios');
 const fs = require('fs');
-const app = express();
 
+const admin = require('firebase-admin');
+const serviceAccount = require('./firebase-key.json'); // baixe do console
+
+const app = express();
+app.use(cors());
 app.use(express.json());
+
 
 // Rota de verificação para Render
 app.get('/', (req, res) => {
   res.send('API está ativa');
 });
-const admin = require('firebase-admin');
-const serviceAccount = require('./firebase-key.json'); // baixe do console
+  admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount){
+    projectId: "meuprojeto-385fe",
+    clientEmail: "firebase-adminsdk-fbsvc@meuprojeto-385fe.iam.gserviceaccount.com",
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  }),
+  storageBucket: "meuprojeto-385fe.appspot.com"
+});
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: 'SEU_BUCKET.appspot.com'
 });
 
 const bucket = admin.storage().bucket();
@@ -26,6 +35,11 @@ app.post('/transcrever', async (req, res) => {
   const videoId = req.body.videoId;
   if (!videoId) return res.status(400).send("ID do vídeo não fornecido");
 
+app.post('/transcrever', async (req, res) => {
+  const { videoId } = req.body;
+  if (!videoId) return res.status(400).send("ID do vídeo não fornecido");
+
+  
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
   // Extrai o áudio usando youtube-dl
